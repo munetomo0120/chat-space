@@ -8,18 +8,18 @@
 |email|string|index: true, null: false, unique: true|
 |password|string|null: false|
 ### Association
-- has_many :groups
-- has_many :groups, through :members
+- has_many :groups, through: :members
+- has_many :members
 - has_many :messages
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|index: true, null: false, unique: true|
-|member|string||
+|name|string|index: true, null: false, unique: true|
 ### Association
 - has_many :messages
-- has_many :users, through :members
+- has_many :users, through: :members
+- has_many :members
 
 ## membersテーブル
 |Column|Type|Options|
@@ -33,7 +33,7 @@
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|body|text|null: false|
+|body|text||
 |image|string||
 |group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
