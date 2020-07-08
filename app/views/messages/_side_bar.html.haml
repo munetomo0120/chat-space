@@ -1,21 +1,35 @@
 .Side-bar
   .Side-bar__user-name
     .Top-items
-      %p.Top-items__name masa
+      %h3.Top-items__name
+        = current_user.name
       %ul.Top-items__icons
-        %li
-          = link_to "#" do
+        %li.Top-items__icon-list
+          = link_to '#' do
             = icon('far', 'edit', class: 'icon')
-        %li
-          = link_to "#" do
+        %li.Top-items__icon-list
+          = link_to edit_user_path(current_user) do
             = icon('fas', 'cog', class: 'icon')
   .Side-bar__group-list
     .Bottom-items
-      %p.Bottom-items__group-name techcamp
-      %p.Bottom-items__message まだメッセージがありません
-    .Bottom-items
-      %p.Bottom-items__group-name techcamp
-      %p.Bottom-items__message まだメッセージがありません
-    .Bottom-items
-      %p.Bottom-items__group-name techcamp
-      %p.Bottom-items__message まだメッセージがありません
+      = link_to '#' do 
+        .Bottom-items__group-name
+          techcamp
+        .Bottom-items__message 
+          まだメッセージがありません
+      = link_to '#' do 
+        .Bottom-items__group-name
+          techcamp
+        .Bottom-items__message 
+          まだメッセージがありません
+      = link_to '#' do 
+        .Bottom-items__group-name
+          techcamp
+        .Bottom-items__message 
+          まだメッセージがありません
+    -# .Bottom-items
+    -#   %p.Bottom-items__group-name techcamp
+    -#   %p.Bottom-items__message まだメッセージがありません
+    -# .Bottom-items
+    -#   %p.Bottom-items__group-name techcamp
+    -#   %p.Bottom-items__message まだメッセージがありません
