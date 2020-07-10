@@ -1,38 +1,30 @@
 .Chat-main
   .Chat-main__group-info
     .header-leftbox
-      %p.current-group test
-      %ul.member-list
-        %li.member
-        Member : masa
+      .current-group
+        = @group.name
+      .member-list
+        Member :
+        %ul.member-list__name
+          - @group.users.each do |user|
+            %li= user.name
+      -# %ul.member-list
+      -#   %li.member
+      -#     Member :
+      -#     = @group.user_ids
     .header-rightbox
-      = link_to "#", class: "edit-btn"  do
+      = link_to edit_group_path(@group), class: "edit-btn"  do
         Edit
   .Chat-main__message-list
     .main-box
-      .message-box
-        .name-box
-          %p.name-box__name masa
-          %p.name-box__date 2019/11/20(Wed) 17:43:01
-        %p.inputted-message おはよう！
-        .name-box
-          %p.name-box__name masa
-          %p.name-box__date 2019/11/20(Wed) 17:43:01
-        %p.inputted-message 俺やで！
-        .name-box
-          %p.name-box__name masa
-          %p.name-box__date 2019/11/20(Wed) 17:43:01
-        %p.inputted-message 知ってるで！
-        .name-box
+      .MessageField
+        = render @messages
   .Chat-main__message-form
     .form-list
-      .form-list__left-box
-        = form_with url: "#", html: {class: "text-box"}  do |f|
-          .input-message
-            = f.text_field :body, placeholder: "type a message", class: "input-text"
-            %label{class: "send_image"}
-              = icon('far', 'image')
-              %input{type: "file", class: "none"}
-      .form-list__right-box
-        = form_with url: "#" do |f|
-          = f.submit "Send", class: "submit-btn"
+      = form_with model: [@group, @message], html: {class: "text-box"}, local: true do |f|
+        .input-message
+          = f.text_field :content, placeholder: "type a message", class: "input-text"
+          = f.label :image, class: "send_image" do
+            = icon('far', 'image', class: 'Form__icon')
+            = f.file_field :image, class: "none"
+        = f.submit "Send", class: "submit-btn"
