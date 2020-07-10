@@ -13,14 +13,8 @@
   .Side-bar__group-list
     - current_user.groups.each do |group|
       .Bottom-items
-        = link_to '#' do 
+        = link_to group_messages_path(group), class: 'groupname-list' do
           .Bottom-items__group-name
             = group.name
-          .Bottom-items__message 
-            まだメッセージがありません
-    -# .Bottom-items
-    -#   %p.Bottom-items__group-name techcamp
-    -#   %p.Bottom-items__message まだメッセージがありません
-    -# .Bottom-items
-    -#   %p.Bottom-items__group-name techcamp
-    -#   %p.Bottom-items__message まだメッセージがありません
+          .Bottom-items__message
+            = group.show_last_message
