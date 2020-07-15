@@ -1,6 +1,5 @@
 $(function() {
   function buildHTML(message) {
-    // if (MessageChannel.image) {
     if (message.image) {
       let html = `<div class="message-box">
                     <div class="name-box">
